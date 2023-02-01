@@ -83,6 +83,14 @@ sel4cp_notify(sel4cp_channel ch)
 }
 
 static inline void
+sel4cp_notify_delayed(sel4cp_channel ch)
+{
+    have_signal = true;
+    signal_msg = seL4_MessageInfo_new(0, 0, 0, 0);
+    signal = (BASE_OUTPUT_NOTIFICATION_CAP + ch);
+}
+
+static inline void
 sel4cp_irq_ack(sel4cp_channel ch)
 {
     seL4_IRQHandler_Ack(BASE_IRQ_CAP + ch);
