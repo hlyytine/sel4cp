@@ -27,7 +27,7 @@ all: $(IMAGES)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 %.o: %.s Makefile
-	$(AS) -g3 -mcpu=$(CPU) $< -o $@
+	$(AS) -g -mcpu=$(CPU) $< -o $@
 
 capfault.elf: $(CAPFAULT_OBJS)
 	$(LD) $(LDFLAGS) $(CAPFAULT_OBJS) $(LIBS) -o $@

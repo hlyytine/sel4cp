@@ -27,7 +27,7 @@ all: $(IMAGES)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 %.o: %.s Makefile
-	$(AS) -g3 -mcpu=$(CPU) $< -o $@
+	$(AS) -g -mcpu=$(CPU) $< -o $@
 
 overlapping_pages.elf: $(OVERLAPPING_PAGES_OBJS)
 	$(LD) $(LDFLAGS) $(OVERLAPPING_PAGES_OBJS) $(LIBS) -o $@

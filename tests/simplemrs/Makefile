@@ -27,7 +27,7 @@ all: $(IMAGES)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 %.o: %.s Makefile
-	$(AS) -g3 -mcpu=$(CPU) $< -o $@
+	$(AS) -g -mcpu=$(CPU) $< -o $@
 
 simplemrs.elf: $(SIMPLEMRS_OBJS)
 	$(LD) $(LDFLAGS) $(SIMPLEMRS_OBJS) $(LIBS) -o $@
