@@ -89,6 +89,20 @@ SUPPORTED_BOARDS = (
             "hello": Path("example/rpi_3b/hello")
         }
     ),
+    BoardInfo(
+        name="rpi4",
+        gcc_cpu="cortex-a72",
+        loader_link_address=0x10000000,
+        kernel_options = {
+            "KernelPlatform": "bcm2711",
+            "KernelARMPlatform": "rpi4",
+            "KernelIsMCS": True,
+            "KernelArmExportPCNTUser": True,
+        },
+        examples = {
+            "hello": Path("example/rpi4/hello")
+        }
+    ),
 )
 
 SUPPORTED_CONFIGS = (
