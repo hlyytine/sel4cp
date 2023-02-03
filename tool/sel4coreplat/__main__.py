@@ -1594,7 +1594,7 @@ def main() -> int:
     kernel_config = KernelConfig(
         word_size = 64,
         minimum_page_size = kb(4),
-        paddr_user_device_top = (1 << 40),
+        paddr_user_device_top = (1 << 44),
         kernel_frame_size = (1 << 12),
         init_cnode_bits = 12,
         cap_address_bits=64,
