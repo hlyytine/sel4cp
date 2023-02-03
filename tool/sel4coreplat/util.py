@@ -54,7 +54,20 @@ def str_to_bool(s: str) -> bool:
         return False
     raise ValueError("invalid boolean value")
 
+def machine_wrap(n: int) -> int:
+    return n & ((2 ** MACHINE_BITS()) - 1)
 
+def machine_add(a: int, b: int) -> int:
+    return machine_wrap(a + b)
+
+def machine_sub(a: int, b: int) -> int:
+    return machine_wrap(a - b)
+
+def paddr2pptr(paddr: int) -> int:
+    return machine_add(paddr, PPTR_BASE())
+
+def pptr2paddr(pptr: int) -> int:
+    return machine_sub(pptr, PPTR_BASE())
 
 @dataclass
 class MemoryRegion:
@@ -69,10 +82,11 @@ class MemoryRegion:
         # Align
         # find the first bit self
         r = []
-        base = self.base
-        end = self.end
+        base = paddr2pptr(self.base)
+        end = paddr2pptr(self.end)
+
         while base != end:
-            size = end - base
+            size = machine_sub(end, base)
             size_bits = msb(size)
             if base == 0:
                 bits = size_bits
@@ -82,8 +96,8 @@ class MemoryRegion:
             if bits > max_bits:
                 bits = max_bits
             sz = 1 << bits
-            r.append(MemoryRegion(base, base + sz))
-            base += sz
+            r.append(MemoryRegion(pptr2paddr(base), pptr2paddr(base + sz)))
+            base = machine_add(base, sz)
 
         return r
 
