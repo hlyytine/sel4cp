@@ -154,7 +154,7 @@ def calculate_rootserver_size(initial_task_region: MemoryRegion) -> int:
     asid_pool_bits = 12  # seL4_ASIDPoolBits
     vspace_bits = 12  #seL4_VSpaceBits
     page_table_bits = 12  # seL4_PageTableBits
-    min_sched_context_bits = 8 # seL4_MinSchedContextBits
+    min_sched_context_bits = 7 # seL4_MinSchedContextBits
 
     size = 0
     size += 1 << (root_cnode_bits + slot_bits)
