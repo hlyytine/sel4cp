@@ -54,6 +54,13 @@ def str_to_bool(s: str) -> bool:
         return False
     raise ValueError("invalid boolean value")
 
+def MACHINE_BITS():
+    return 64
+
+def PPTR_BASE():
+    # aarch64 in EL1, for EL2 use 2 ** 48 - 2 ** 39
+    return 2 ** 64 - 2 ** 39
+
 def machine_wrap(n: int) -> int:
     return n & ((2 ** MACHINE_BITS()) - 1)
 
